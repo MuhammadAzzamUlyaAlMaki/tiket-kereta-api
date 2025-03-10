@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import "react-toastify/ReactToastify.css"
-import "react-datepicker/dist/react-datepicker.css"
+import EmployeeTemplate from "@/components/EmployeeTemplate";
 
 
 export const metadata: Metadata = {
@@ -15,10 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
+<EmployeeTemplate>
+{children}
+</EmployeeTemplate>
   );
 }
