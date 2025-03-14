@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import axiosInstance from '@/helper/api'
 import React from 'react'
 import History from './History'

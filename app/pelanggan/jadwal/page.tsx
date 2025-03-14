@@ -1,8 +1,11 @@
+export const dynamic = "force-dynamic";
 import { ScheduleType } from "@/app/karyawan/types"
 import FilterJadwal from "./FilterJadwal"
 import axiosInstance from "@/helper/api"
 import { getServerCookie } from "@/helper/server-cookie"
 import Schedule from "./Schedule"
+
+
 
 /** get data jadwal */
 const getJadwal = async (
@@ -27,16 +30,16 @@ const getJadwal = async (
 
 type Props = { 
     // merubah properti queryParams menjadi     rams
-    searchParams: {
+    searchParams: Promise<{
         departured_location?: string
         arrived_location?: string
-    } 
+    }>
 }
 
 const JadwalPage = async (myProp: Props) => {
-    const departured_location = await myProp.searchParams?.departured_location?.toString() || ""
+    const departured_location = (await myProp.searchParams)?.departured_location?.toString() || ""
                                 // menambahkan await
-    const arrived_location = await myProp.searchParams?.arrived_location?.toString() || ""
+    const arrived_location = (await myProp.searchParams)?.arrived_location?.toString() || ""
                                 // menambahkan await
     const dataJadwal = await getJadwal(departured_location, arrived_location)
     return(

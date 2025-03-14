@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { KeretaType, ScheduleType } from "@/app/karyawan/types"
 import axiosInstance from "@/helper/api"
 import { getServerCookie } from "@/helper/server-cookie"
@@ -48,12 +49,12 @@ const getScheduleDetail =
 }
 
 type Props = {
-    params: {
+    params: Promise <{
         schedule_id: number
-    }
+    }>
 }
 const KeretaDetailPage = async (myProp: Props) => {
-    const schedule_id = Number (myProp.params.schedule_id)
+    const schedule_id = (await myProp.params).schedule_id
     const detailSchedule = await getScheduleDetail (schedule_id)
     const detailKereta = await getTrainBySchedule(schedule_id)
 
